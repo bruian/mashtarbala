@@ -1,0 +1,25 @@
+{
+  "name": "mashtarbala",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:1": "node index.js 1 100",
+    "start:2": "node index.js 2 100",
+    "start:3": "node index.js 3 100",
+    "start:4": "node index.js 4 100"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bruian/mashtarbala.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bruian/mashtarbala/issues"
+  },
+  "homepage": "https://github.com/bruian/mashtarbala#readme",
+  "dependencies": {
+    "ramda": "^0.26.1"
+  }
+}
