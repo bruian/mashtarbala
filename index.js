@@ -69,7 +69,7 @@ void function() {
     start = Date.now();
   }
 
-  const average = results.reduce((el, acc) => acc += el, 0) / 10;
+  const average = results.reduce((el, acc) => acc += el, 0) / results.length;
   const max = Math.max.apply(null, results);
   const min = Math.min.apply(null, results);
   console.log(`End tests -> average: ${average}, minimal: ${min}, maximal: ${max}`);
