@@ -1,32 +1,35 @@
 const { pipe, filter, map, compose, prop, includes } = require('ramda');
 
 void function() {
-  const dataSet = [];
-  const results = [];
+  const dataSetLength = 1000000;
+  const dataSet = new Array(dataSetLength);
   const condition = 'bye';
   const testCase = [
     'imperative',
     'functional (forEach)',
     'functional (declarative)',
-    'ramda (declarative)'
+    'ramda (declarative)',
+    'imperative (let)'
   ];
 
   const test = +process.argv[2] || 1;
   const timesCount = +process.argv[3] || 100;
 
+  const results = new Array(timesCount);
+
   var start = Date.now();
 
   console.log('Start data generation');
 
-  for (var i = 0; i < 1000000; i++) {
-    dataSet.push({
+  for (var i = 0; i < dataSetLength; i++) {
+    dataSet[i] = {
       id: i,
       date: new Date(),
       name: `cicle №:${i}`,
       description: (i % 10)
         ? 'Hello, hello, hello, hello, hi, hello, hello, hello'
         : 'Hello, hello, hello, bye, hell, hello, hello, hello',
-    });
+    };
   }
 
   console.log('End data generation, ms:', Date.now() - start);
@@ -62,10 +65,17 @@ void function() {
         // filter(compose(includes(condition), prop('id'))),
         map(el => ({ id: el.id, date: el.date }))
       )(dataSet);
+    } else if (test === 5) {
+      var operationResult = [];
+      for (let i = 0; i < dataSet.length; i++) {
+        if (dataSet[i].description.includes(condition)) {
+          operationResult.push({ id: dataSet[i].id, date: dataSet[i].date });
+        }
+      }
     }
     // *****  end  *****
 
-    results.push(Date.now() - start);
+    results[times] = Date.now() - start;
     start = Date.now();
   }
 
